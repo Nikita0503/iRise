@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
@@ -66,6 +67,12 @@ public class MainPresenter implements BaseContract.BasePresenter {
                 MDToast.makeText(mMainActivity.getApplicationContext(), mMainActivity.getResources().getString(R.string.error), Toast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
             }
         };
+    }
+
+    public AutocompleteFilter getPlaceFilter(){
+        return new AutocompleteFilter.Builder()
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
+                .build();
     }
 
     public void fetchDataByCoordinates(LatLng coordinates) {

@@ -75,10 +75,7 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
         mSwitchTimesOfDay.setOnCheckedChangeListener(this);
         mAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
-                .build();
-        mAutocompleteFragment.setFilter(typeFilter);
+        mAutocompleteFragment.setFilter(mPresenter.getPlaceFilter());
         mAutocompleteFragment.setOnPlaceSelectedListener(mPresenter.getPlaceSelectionListener());
         MDToast.makeText(getApplicationContext(), getResources().getString(R.string.startInfo), Toast.LENGTH_LONG, MDToast.TYPE_INFO).show();
     }
