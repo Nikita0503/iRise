@@ -2,30 +2,23 @@ package com.example.nikita.irise;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Paint;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.example.nikita.irise.UI.MainActivity;
 import com.example.nikita.irise.model.APIUtils.SunAPIUtils;
 import com.example.nikita.irise.model.data.SunInfo;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.PlaceFilter;
-import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
-import com.valdesekamdem.library.mdtoast.MDToast;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * Created by Nikita on 01.06.2018.
@@ -90,6 +83,7 @@ public class MainPresenter implements BaseContract.BasePresenter {
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
                 try {
                     fetchDataByCoordinates(likelyPlaces.get(0).getPlace().getLatLng());
+                    mMainActivity.setPlace(mMainActivity.getResources().getString(R.string.currentPlace));
                     likelyPlaces.release();
                 }catch (Exception c){
                     mMainActivity.stopRotateLoading();

@@ -9,4 +9,6 @@
     <string name="dayLength">Тривалість дня:</string>
     <string name="success">Успішно!</string>
     <string name="error">Помилка!</string>
+    <string name="place">Місце</string>
+    <string name="currentPlace">Ваше місцезнаходження</string>
 </resources>

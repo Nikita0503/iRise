@@ -1,4 +1,4 @@
-package com.example.nikita.irise;
+package com.example.nikita.irise.UI;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -21,6 +21,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nikita.irise.BaseContract;
+import com.example.nikita.irise.MainPresenter;
+import com.example.nikita.irise.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
@@ -51,6 +54,8 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
     TextView mTextViewTime;
     @BindView(R.id.textViewDayLengthValue)
     TextView mTextViewDayLength;
+    @BindView(R.id.textViewPlace)
+    TextView mTextViewPlace;
     @OnClick(R.id.imageViewLocation)
     void onClickImageViewLocation(){
         mPresenter.fetchCurrentLocation();
@@ -76,6 +81,7 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
             @Override
             public void onPlaceSelected(Place place) {
                 mPresenter.fetchDataByCoordinates(place.getLatLng());
+                setPlace(place.getName().toString());
                 startRotateLoading();
             }
 
@@ -134,6 +140,10 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
         }
         mTextViewTimesOfDay.setText(R.string.sunsetField);
         mTextViewTime.setText(mPresenter.getSunsetTime());
+    }
+
+    public void setPlace(String place){
+        mTextViewPlace.setText(place);
     }
 
     public void setDayLength(String length){

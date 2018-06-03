@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.example.nikita.irise.MainActivity">
+    tools:context="com.example.nikita.irise.UI.MainActivity">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayoutPlacePicker"
@@ -125,6 +125,18 @@
         app:loading_color="#ffffff"
         app:loading_width="5dp" />
 
+    <TextView
+        android:id="@+id/textViewPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/hattori_hanzo"
+        android:text="@string/place"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchTimesOfDay" />
 
 
 </android.support.constraint.ConstraintLayout>

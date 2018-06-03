@@ -9,4 +9,6 @@
     <string name="dayLength">Day length:</string>
     <string name="success">Successfully!</string>
     <string name="error">Error!</string>
+    <string name="place">Place</string>
+    <string name="currentPlace">Current place</string>
 </resources>
