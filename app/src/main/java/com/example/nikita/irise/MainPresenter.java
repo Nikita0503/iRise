@@ -3,6 +3,7 @@ package com.example.nikita.irise;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import com.example.nikita.irise.UI.MainActivity;
 import com.example.nikita.irise.model.APIUtils.SunAPIUtils;
@@ -10,9 +11,13 @@ import com.example.nikita.irise.model.data.SunInfo;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
+import com.valdesekamdem.library.mdtoast.MDToast;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -45,6 +50,22 @@ public class MainPresenter implements BaseContract.BasePresenter {
                 .addApi(Places.PLACE_DETECTION_API)
                 .enableAutoManage(mMainActivity, mMainActivity)
                 .build();
+    }
+
+    public PlaceSelectionListener getPlaceSelectionListener(){
+        return new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                fetchDataByCoordinates(place.getLatLng());
+                mMainActivity.setPlace(place.getName().toString());
+                mMainActivity.startRotateLoading();
+            }
+            @Override
+            public void onError(Status status) {
+                mMainActivity.stopRotateLoading();
+                MDToast.makeText(mMainActivity.getApplicationContext(), mMainActivity.getResources().getString(R.string.error), Toast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
+            }
+        };
     }
 
     public void fetchDataByCoordinates(LatLng coordinates) {

@@ -70,6 +70,8 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mPresenter = new MainPresenter(this);
+        mPresenter.onStart();
         mSwitchTimesOfDay.setOnCheckedChangeListener(this);
         mAutocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -77,22 +79,7 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
                 .setTypeFilter(AutocompleteFilter.TYPE_FILTER_CITIES)
                 .build();
         mAutocompleteFragment.setFilter(typeFilter);
-        mAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                mPresenter.fetchDataByCoordinates(place.getLatLng());
-                setPlace(place.getName().toString());
-                startRotateLoading();
-            }
-
-            @Override
-            public void onError(Status status) {
-                stopRotateLoading();
-                MDToast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-            }
-        });
-        mPresenter = new MainPresenter(this);
-        mPresenter.onStart();
+        mAutocompleteFragment.setOnPlaceSelectedListener(mPresenter.getPlaceSelectionListener());
         MDToast.makeText(getApplicationContext(), getResources().getString(R.string.startInfo), Toast.LENGTH_LONG, MDToast.TYPE_INFO).show();
     }
 
