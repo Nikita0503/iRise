@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">iRise</string>
+    <string name="startInfo">Оберіть місто</string>
+    <string name="timeOfDayField">Час доби:</string>
+    <string name="sunriseField">Світанок:</string>
+    <string name="sunsetField">Захід:</string>
+    <string name="sunrise">Світанок</string>
+    <string name="sunset">Захід</string>
+    <string name="dayLength">Тривалість дня:</string>
+    <string name="success">Успішно!</string>
+    <string name="error">Помилка!</string>
+</resources>

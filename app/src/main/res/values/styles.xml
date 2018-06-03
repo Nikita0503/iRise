@@ -1,0 +1,11 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="switchTimesOfDayTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/switchColorSunset</item>
+        <item name="colorSwitchThumbNormal">@color/switchColorSunrise</item>
+    </style>
+</resources>

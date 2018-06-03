@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">iRise</string>
+    <string name="startInfo">Choose the city, please</string>
+    <string name="timeOfDayField">Time of Day:</string>
+    <string name="sunriseField">Sunrise:</string>
+    <string name="sunsetField">Sunset:</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="dayLength">Day length:</string>
+    <string name="success">Successfully!</string>
+    <string name="error">Error!</string>
+</resources>
