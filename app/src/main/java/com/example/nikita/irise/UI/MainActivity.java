@@ -40,6 +40,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends FragmentActivity implements BaseContract.BaseView, CompoundButton.OnCheckedChangeListener, GoogleApiClient.OnConnectionFailedListener {
+    private MainPresenter mPresenter;
+    private PlaceAutocompleteFragment mAutocompleteFragment;
     @BindView(R.id.constraintLayoutView)
     ConstraintLayout mLayoutView;
     @BindView(R.id.linearLayoutPlacePicker)
@@ -61,9 +63,6 @@ public class MainActivity extends FragmentActivity implements BaseContract.BaseV
         mPresenter.fetchCurrentLocation();
         startRotateLoading();
     }
-
-    PlaceAutocompleteFragment mAutocompleteFragment;
-    private MainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
